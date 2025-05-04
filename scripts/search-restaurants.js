@@ -1,29 +1,34 @@
 import { restaurants } from "./data/restaurants.js";
 import createRestaurantNode from "./helpers/createRestaurantNode.utility.js";
 
-const searchInput = document.getElementById("search-input");
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("search-input");
+  searchInput.value = "";
 
-const containerForRestaurants = document.getElementById(
-  "container-restaurants",
-);
-
-searchInput.addEventListener("input", (event) => {
-  const resturantCards = document.querySelectorAll("restaurant-card");
-
-  console.log("resturantCards", resturantCards);
-  const searchValue = event.target.value.toLowerCase().trim() || "";
-
-  const filteredRestaurants = restaurants.filter((restaurant) =>
-    restaurant.title.toLowerCase().includes(searchValue),
+  const containerForRestaurants = document.getElementById(
+    "container-restaurants",
   );
 
-  resturantCards.forEach((card) => {
-    card.remove();
-  });
+  searchInput.addEventListener("input", (event) => {
+    const resturantCards = document.querySelectorAll("restaurant-card");
 
-  filteredRestaurants.forEach((restaurant) => {
-    const restaurantCard = createRestaurantNode(restaurant);
+    const searchValue = event.target.value.toLowerCase().trim() || "";
 
-    containerForRestaurants.insertAdjacentElement("beforeend", restaurantCard);
+    const filteredRestaurants = restaurants.filter((restaurant) =>
+      restaurant.title.toLowerCase().includes(searchValue),
+    );
+
+    resturantCards.forEach((card) => {
+      card.remove();
+    });
+
+    filteredRestaurants.forEach((restaurant) => {
+      const restaurantCard = createRestaurantNode(restaurant);
+
+      containerForRestaurants.insertAdjacentElement(
+        "beforeend",
+        restaurantCard,
+      );
+    });
   });
 });

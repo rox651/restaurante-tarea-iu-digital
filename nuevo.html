@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio - Resturantes IU Digital</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <link href="css/star-rating.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <nav class="max-w-7xl mx-auto px-4 py-6">
+        <ul class="flex gap-4 flex-wrap jus lg:justify-start">
+          <li>
+            <a href="index.html">Inicio</a>
+          </li>
+          <li>
+            <a href="buscar.html">Busqueda de resturantes</a>
+          </li>
+          <li>
+            <a href="nuevo.html">Nuevo restaurante</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <h1 class="text-2xl font-bold mb-6">Formulario</h1>
+      <form
+        id="restaurant-form"
+        class="space-y-4 max-w-md mx-auto p-4 bg-white shadow-md rounded"
+      >
+        <input
+          type="text"
+          name="title"
+          placeholder="Restaurant Name"
+          required
+          class="w-full border p-2 rounded"
+        />
+
+        <input type="text" id="tags" name="tags" />
+
+        <select name="star-rating" class="star-rating">
+          <option value="">Select a rating</option>
+          <option value="5">Excellent</option>
+          <option value="4">Very Good</option>
+          <option value="3">Average</option>
+          <option value="2">Poor</option>
+          <option value="1">Terrible</option>
+        </select>
+
+        <input
+          type="number"
+          step="0.01"
+          name="fee"
+          placeholder="Delivery Fee ($)"
+          required
+          class="w-full border p-2 rounded"
+        />
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+          Add Restaurant
+        </button>
+      </form>
+    </div>
+
+    <script src="scripts/star-rating.js"></script>
+    <script type="module" src="scripts/add-restaurants.js"></script>
+  </body>
+</html>

@@ -2,11 +2,12 @@ import { restaurants } from "./data/restaurants.js";
 import createRestaurantNode from "./helpers/createRestaurantNode.utility.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const resturantsFromLocalStorage =
+  let resturantsFromLocalStorage =
     JSON.parse(localStorage.getItem("restaurants")) || [];
 
   if (resturantsFromLocalStorage.length === 0) {
     localStorage.setItem("restaurants", JSON.stringify(restaurants));
+    resturantsFromLocalStorage = restaurants;
   }
 
   const containerForRestaurants = document.getElementById(
