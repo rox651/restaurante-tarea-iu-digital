@@ -32,12 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const restaurant = {
       title: formData.get("title"),
+      description: formData.get("description"),
+      address: formData.get("address"),
+      image: formData.get("image"),
       tags: tagSelect
         .getValue()
         .map((tag) => tag.value)
         .join(" • "),
       rating: formData.get("star-rating"),
-      fee: `$${parseFloat(formData.get("fee")).toFixed(2)}`,
     };
     saveRestaurant(restaurant);
 

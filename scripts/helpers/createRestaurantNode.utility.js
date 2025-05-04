@@ -4,11 +4,10 @@ export default function createRestaurantNode(restaurant) {
 
   restaurantCard.setAttribute("title", restaurant.title);
   restaurantCard.setAttribute("tags", restaurant.tags);
-  restaurantCard.setAttribute("time", restaurant.time);
   restaurantCard.setAttribute("rating", restaurant.rating);
-  restaurantCard.setAttribute("reviews", restaurant.reviews);
-  restaurantCard.setAttribute("fee", restaurant.fee);
   restaurantCard.setAttribute("image", restaurant.image);
+  restaurantCard.setAttribute("description", restaurant.description);
+  restaurantCard.setAttribute("address", restaurant.address);
 
   return restaurantCard;
 }

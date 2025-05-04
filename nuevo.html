@@ -38,33 +38,51 @@
         <input
           type="text"
           name="title"
-          placeholder="Restaurant Name"
+          placeholder="Nombre del restaurante"
           required
           class="w-full border p-2 rounded"
         />
 
-        <input type="text" id="tags" name="tags" />
+        <input
+          type="text"
+          name="address"
+          placeholder="Dirección"
+          required
+          class="w-full border p-2 rounded"
+        />
+        <textarea
+          name="description"
+          placeholder="Descripción"
+          required
+          class="w-full border p-2 rounded"
+        ></textarea>
+
+        <input
+          type="text"
+          id="tags"
+          name="tags"
+          placeholder="Agrega etiquetas"
+        />
 
         <select name="star-rating" class="star-rating">
-          <option value="">Select a rating</option>
-          <option value="5">Excellent</option>
-          <option value="4">Very Good</option>
-          <option value="3">Average</option>
-          <option value="2">Poor</option>
+          <option value="">Seleccionar una puntuacion</option>
+          <option value="5">Excelente</option>
+          <option value="4">Muy bueno</option>
+          <option value="3">Bueno</option>
+          <option value="2">No muy bueno</option>
           <option value="1">Terrible</option>
         </select>
 
         <input
-          type="number"
-          step="0.01"
-          name="fee"
-          placeholder="Delivery Fee ($)"
-          required
+          type="text"
+          id="image"
+          name="image"
+          placeholder="URL de la imagen"
           class="w-full border p-2 rounded"
         />
 
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-          Add Restaurant
+          Agregar nuevo restaurante
         </button>
       </form>
     </div>
