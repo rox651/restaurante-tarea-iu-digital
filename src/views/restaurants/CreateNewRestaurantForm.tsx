@@ -22,31 +22,51 @@ const CreateNewRestaurantForm = ({ handleSetNewRestaurant }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register("name")} placeholder="Nombre del restaurante" />
-      {errors.name && <InputError message="Este campo es requerido" />}
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div>
+        <Input
+          {...register("name", { required: true })}
+          placeholder="Nombre del restaurante"
+          className="w-full"
+        />
+        {errors.name && <InputError message="Este campo es requerido" />}
+      </div>
 
-      <Input
-        {...register("address")}
-        placeholder="Dirreccion del restaurante"
-      />
-      {errors.address && <InputError message="Este campo es requerido" />}
+      <div>
+        <Input
+          {...register("address", { required: true })}
+          placeholder="Dirección del restaurante"
+          className="w-full"
+        />
+        {errors.address && <InputError message="Este campo es requerido" />}
+      </div>
 
-      <Input
-        {...register("description")}
-        placeholder="Descripcion del restaurante"
-      />
-      {errors.description && <InputError message="Este campo es requerido" />}
+      <div>
+        <Input
+          {...register("description", { required: true })}
+          placeholder="Descripción del restaurante"
+          className="w-full"
+        />
+        {errors.description && <InputError message="Este campo es requerido" />}
+      </div>
 
-      <Input
-        type="url"
-        pattern="https://.*"
-        placeholder="Nombre del restaurante"
-        {...register("imageURL")}
-      />
-      {errors.imageURL && <InputError message="Este campo es requerido" />}
+      <div>
+        <Input
+          type="url"
+          pattern="https://.*"
+          placeholder="Imagen del restaurante"
+          {...register("imageURL", { required: true })}
+          className="w-full"
+        />
+        {errors.imageURL && <InputError message="Este campo es requerido" />}
+      </div>
 
-      <button>Crear restaurante</button>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200"
+      >
+        Crear Restaurante
+      </button>
     </form>
   );
 };

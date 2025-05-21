@@ -19,12 +19,12 @@ function RouteComponent() {
 
   return (
     <>
-      <Restaurants restaurants={restaurantsByName} />
       <SearchRestaurant
         onChange={(filter) => {
           setName(filter.name);
         }}
       />
+      <Restaurants restaurants={restaurantsByName} />
     </>
   );
 }

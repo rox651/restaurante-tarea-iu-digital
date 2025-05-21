@@ -11,5 +11,12 @@ export const Route = createFileRoute("/")({
 function RouteComponent() {
   const allRestaurants = getAllResturantsUseCase();
 
-  return <Restaurants restaurants={allRestaurants} />;
+  return (
+    <>
+      <h1 className="text-center font-black mb-5 text-5xl lg:text-6xl">
+        A donde ir?
+      </h1>
+      <Restaurants restaurants={allRestaurants} />
+    </>
+  );
 }

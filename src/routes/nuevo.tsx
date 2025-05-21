@@ -11,6 +11,16 @@ function RouteComponent() {
   const handleSetNewRestaurant = setNewRestaurantUseCase();
 
   return (
-    <CreateNewRestaurantForm handleSetNewRestaurant={handleSetNewRestaurant} />
+    <>
+      <h2 className="text-center font-black mb-5 text-3xl lg:text-4xl">
+        Crear Nuevo Restaurante
+      </h2>
+
+      <div className="mx-auto lg:w-1/2">
+        <CreateNewRestaurantForm
+          handleSetNewRestaurant={handleSetNewRestaurant}
+        />
+      </div>
+    </>
   );
 }
