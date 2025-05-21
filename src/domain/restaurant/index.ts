@@ -5,4 +5,8 @@ interface Restaurant {
   address: string;
 }
 
-export default Restaurant;
+interface RestaurantSearchFilter {
+  name: string;
+}
+
+export type { Restaurant, RestaurantSearchFilter };

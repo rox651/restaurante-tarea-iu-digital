@@ -11,37 +11,99 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as NuevoImport } from './routes/nuevo'
+import { Route as BusquedaImport } from './routes/busqueda'
+import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const NuevoRoute = NuevoImport.update({
+  id: '/nuevo',
+  path: '/nuevo',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BusquedaRoute = BusquedaImport.update({
+  id: '/busqueda',
+  path: '/busqueda',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IndexRoute = IndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/busqueda': {
+      id: '/busqueda'
+      path: '/busqueda'
+      fullPath: '/busqueda'
+      preLoaderRoute: typeof BusquedaImport
+      parentRoute: typeof rootRoute
+    }
+    '/nuevo': {
+      id: '/nuevo'
+      path: '/nuevo'
+      fullPath: '/nuevo'
+      preLoaderRoute: typeof NuevoImport
+      parentRoute: typeof rootRoute
+    }
+  }
 }
 
 // Create and export the route tree
 
-export interface FileRoutesByFullPath {}
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/busqueda': typeof BusquedaRoute
+  '/nuevo': typeof NuevoRoute
+}
 
-export interface FileRoutesByTo {}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/busqueda': typeof BusquedaRoute
+  '/nuevo': typeof NuevoRoute
+}
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/busqueda': typeof BusquedaRoute
+  '/nuevo': typeof NuevoRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths: '/' | '/busqueda' | '/nuevo'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to: '/' | '/busqueda' | '/nuevo'
+  id: '__root__' | '/' | '/busqueda' | '/nuevo'
   fileRoutesById: FileRoutesById
 }
 
-export interface RootRouteChildren {}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  BusquedaRoute: typeof BusquedaRoute
+  NuevoRoute: typeof NuevoRoute
+}
 
-const rootRouteChildren: RootRouteChildren = {}
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  BusquedaRoute: BusquedaRoute,
+  NuevoRoute: NuevoRoute,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
@@ -52,7 +114,20 @@ export const routeTree = rootRoute
   "routes": {
     "__root__": {
       "filePath": "__root.tsx",
-      "children": []
+      "children": [
+        "/",
+        "/busqueda",
+        "/nuevo"
+      ]
+    },
+    "/": {
+      "filePath": "index.tsx"
+    },
+    "/busqueda": {
+      "filePath": "busqueda.tsx"
+    },
+    "/nuevo": {
+      "filePath": "nuevo.tsx"
     }
   }
 }

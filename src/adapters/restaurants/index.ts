@@ -1,4 +1,4 @@
-import Restaurant from "../../domain/restaurant";
+import type { Restaurant } from "../../domain/restaurant";
 import restaurants from "../../domain/restaurant/data";
 
 import RestaurantRepository from "../../repositories/restaurants/";
@@ -10,7 +10,7 @@ class RestaurantAdapter implements RestaurantRepository {
   getAllRestaurants(): Restaurant[] {
     return restaurants;
   }
-  getRestaurantByName(name: string): Restaurant[] {
+  getRestaurantByName(name: string, restaurants: Restaurant[]): Restaurant[] {
     return filterRestaurantByName(name, restaurants);
   }
   setNewRestaurant(restaurant: Restaurant): Restaurant[] {

@@ -1,6 +1,6 @@
 import RestaurantAdapter from "../../adapters/restaurants";
-import Restaurant from "../../domain/restaurant";
-import useLocalStorage from "../common/useLocalStorage";
+import type { Restaurant } from "../../domain/restaurant";
+import getAllResturantsUseCase from "./getAllRestaurantsUseCase";
 
 const restaurantAdapter = new RestaurantAdapter();
 
@@ -9,9 +9,10 @@ type GetRestaurantsByNameUseCase = Restaurant[];
 const getResturantsByNameUseCase = (
   name: string,
 ): GetRestaurantsByNameUseCase => {
-  const [restaurantsByName] = useLocalStorage(
-    "restaurants",
-    restaurantAdapter.getRestaurantByName(name),
+  const allRestaurants = getAllResturantsUseCase();
+  const restaurantsByName = restaurantAdapter.getRestaurantByName(
+    name,
+    allRestaurants,
   );
 
   return restaurantsByName;

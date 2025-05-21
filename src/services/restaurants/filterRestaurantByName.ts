@@ -1,10 +1,10 @@
-import Restaurant from "../../domain/restaurant";
+import type { Restaurant } from "../../domain/restaurant";
 
 const filterRestaurantByName = (name: string, restaurants: Restaurant[]) => {
   const formattedName = name.toLowerCase().trim();
 
-  return restaurants.filter(
-    (restaurant) => formattedName === restaurant.name.toLowerCase(),
+  return restaurants.filter((restaurant) =>
+    restaurant.name.toLowerCase().includes(formattedName),
   );
 };
 

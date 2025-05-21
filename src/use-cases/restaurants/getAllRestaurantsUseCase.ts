@@ -1,5 +1,6 @@
 import RestaurantAdapter from "../../adapters/restaurants";
-import Restaurant from "../../domain/restaurant";
+import type { Restaurant } from "../../domain/restaurant";
+
 import useLocalStorage from "../common/useLocalStorage";
 
 const restaurantAdapter = new RestaurantAdapter();
