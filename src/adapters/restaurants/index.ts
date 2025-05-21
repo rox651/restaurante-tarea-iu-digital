@@ -1,5 +1,5 @@
 import type { Restaurant } from "../../domain/restaurant";
-import restaurants from "../../domain/restaurant/data";
+import { restaurants, LOCAL_STORAGE_KEY } from "../../domain/restaurant/data";
 
 import RestaurantRepository from "../../repositories/restaurants/";
 
@@ -14,7 +14,7 @@ class RestaurantAdapter implements RestaurantRepository {
     return filterRestaurantByName(name, restaurants);
   }
   setNewRestaurant(restaurant: Restaurant): Restaurant[] {
-    const allRestaurants = getStorageValue("restaurants", restaurants);
+    const allRestaurants = getStorageValue(LOCAL_STORAGE_KEY, restaurants);
     const updatedRestaurants = [...allRestaurants, restaurant];
 
     return updatedRestaurants;

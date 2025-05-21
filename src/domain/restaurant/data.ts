@@ -38,4 +38,6 @@ const restaurants: Restaurant[] = [
   },
 ];
 
-export default restaurants;
+const LOCAL_STORAGE_KEY = "restaurants-data";
+
+export { restaurants, LOCAL_STORAGE_KEY };
