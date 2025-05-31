@@ -2,14 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import Restaurants from "../views/restaurants/Restaurants";
 
-import getAllResturantsUseCase from "../use-cases/restaurants/useGetAllRestaurants";
+import useGetAllRestaurants from "../hooks/restaurants/useGetAllRestaurants";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { restaurants, isLoadingRestaurants } = getAllResturantsUseCase();
+  const { restaurants, isLoadingRestaurants } = useGetAllRestaurants();
 
   return (
     <>

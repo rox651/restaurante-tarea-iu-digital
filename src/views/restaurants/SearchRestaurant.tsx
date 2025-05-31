@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useDebounce } from "../../use-cases/common/useDebounce";
+import { useDebounce } from "../../hooks/common/useDebounce";
+
 import { Input } from "../../components/common/input";
+
 import type RestaurantSearchFilter from "../../domain/entities/restaurants/RestaurantSearchFilter";
 
 type Props = {
