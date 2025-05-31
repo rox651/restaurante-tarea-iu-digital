@@ -1,19 +1,24 @@
 import type { Restaurant } from "../../domain/restaurant";
 
 import RestaurantRepository from "../../repositories/restaurants/";
+import addRestaurant from "../../services/restaurants/addRestaurant";
 
-import fetchRestaurantByName from "../../services/restaurants/fetchRestaurantByName";
 import fetchAllRestaurants from "../../services/restaurants/fetchAllRestaurants";
+import filterRestaurantByName from "../../services/restaurants/filterRestaurantsByName";
 
 class RestaurantAdapter implements RestaurantRepository {
   async getAllRestaurants() {
-    const restaurants = fetchAllRestaurants();
+    const restaurants = await fetchAllRestaurants();
     return restaurants;
   }
   async getRestaurantsByName(name: string) {
-    return fetchRestaurantByName(name);
+    const restaurants = await fetchAllRestaurants();
+    const restaurantsByName = filterRestaurantByName(name, restaurants);
+    return restaurantsByName;
   }
-  setNewRestaurant(restaurant: Restaurant) {}
+  async setNewRestaurant(restaurant: Restaurant) {
+    await addRestaurant(restaurant);
+  }
 }
 
 export default RestaurantAdapter;

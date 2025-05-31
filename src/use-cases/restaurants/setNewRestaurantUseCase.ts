@@ -1,20 +1,26 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import RestaurantAdapter from "../../adapters/restaurants";
 import type { Restaurant } from "../../domain/restaurant";
 
 const restaurantAdapter = new RestaurantAdapter();
 
-type SetNewRestaurantUseCase = (restaurant: Restaurant) => void;
+type SetNewRestaurantUseCase = (restaurant: Restaurant) => Promise<void>;
 
 const setNewRestaurantUseCase = (): SetNewRestaurantUseCase => {
-  // const [_, setAllRestaurants] = useLocalStorage(
-  //   LOCAL_STORAGE_KEY,
-  //   restaurantAdapter.getAllRestaurants(),
-  // );
+  const queryClient = useQueryClient();
+  const { mutateAsync } = useMutation({
+    mutationFn: (restaurant: Restaurant) =>
+      restaurantAdapter.setNewRestaurant(restaurant),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["restaurants"] });
+    },
+    onError: (error) => {
+      console.error("Error setting new restaurant:", error);
+    },
+  });
 
-  const handleSetNewRestaurant = (restaurant: Restaurant) => {
-    // const updatedRestaurants = restaurantAdapter.setNewRestaurant(restaurant);
-    //
-    // setAllRestaurants(updatedRestaurants);
+  const handleSetNewRestaurant = async (restaurant: Restaurant) => {
+    await mutateAsync(restaurant);
   };
 
   return handleSetNewRestaurant;

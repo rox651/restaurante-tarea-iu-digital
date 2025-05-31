@@ -9,14 +9,21 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
-  const allRestaurants = getAllResturantsUseCase();
+  const { restaurants, isLoadingRestaurants } = getAllResturantsUseCase();
 
   return (
     <>
       <h1 className="text-center font-black mb-5 text-5xl lg:text-6xl">
         A donde ir?
       </h1>
-      <Restaurants restaurants={allRestaurants} />
+
+      {isLoadingRestaurants ? (
+        <p className="text-center text-2xl">Cargando...</p>
+      ) : null}
+
+      {!isLoadingRestaurants && restaurants ? (
+        <Restaurants restaurants={restaurants} />
+      ) : null}
     </>
   );
 }

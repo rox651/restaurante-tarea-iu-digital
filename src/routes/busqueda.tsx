@@ -15,7 +15,8 @@ export const Route = createFileRoute("/busqueda")({
 function RouteComponent() {
   const [name, setName] = useState<RestaurantSearchFilter["name"]>("");
 
-  const restaurantsByName = getResturantsByNameUseCase(name);
+  const { restaurants, isLoadingRestaurants } =
+    getResturantsByNameUseCase(name);
 
   return (
     <>
@@ -24,7 +25,14 @@ function RouteComponent() {
           setName(filter.name);
         }}
       />
-      <Restaurants restaurants={restaurantsByName} />
+
+      {isLoadingRestaurants ? (
+        <p className="text-center text-2xl">Cargando...</p>
+      ) : null}
+
+      {!isLoadingRestaurants && restaurants ? (
+        <Restaurants restaurants={restaurants} />
+      ) : null}
     </>
   );
 }

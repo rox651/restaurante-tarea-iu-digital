@@ -1,18 +1,26 @@
 import RestaurantAdapter from "../../adapters/restaurants";
 import type { Restaurant } from "../../domain/restaurant";
+import { useQuery } from "@tanstack/react-query";
 
 const restaurantAdapter = new RestaurantAdapter();
 
-type GetAllRestaurantsUseCase = Restaurant[];
+type GetAllRestaurantsUseCase = {
+  restaurants: Restaurant[] | undefined;
+  isLoadingRestaurants: boolean;
+};
 
 const getAllResturantsUseCase = (): GetAllRestaurantsUseCase => {
-  // const [allRestaurants] = useLocalStorage(
-  //   LOCAL_STORAGE_KEY,
-  //   restaurantAdapter.getAllRestaurants(),
-  // );
-  //
-  // return allRestaurants;
-  return [];
+  const { data, isLoading } = useQuery({
+    queryKey: ["restaurants"],
+    queryFn: async () => {
+      return await restaurantAdapter.getAllRestaurants();
+    },
+  });
+
+  return {
+    restaurants: data,
+    isLoadingRestaurants: isLoading,
+  };
 };
 
 export default getAllResturantsUseCase;
