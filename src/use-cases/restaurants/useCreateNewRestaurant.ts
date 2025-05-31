@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import RestaurantAdapter from "../../adapters/restaurants";
-import type { Restaurant } from "../../domain/restaurant";
+import RestaurantAdapter from "../../infrastructure/adapters/restaurants/RestaurantAdapter";
+import type Restaurant from "../../domain/entities/restaurants/Restaurant";
 
 const restaurantAdapter = new RestaurantAdapter();
 
-type SetNewRestaurantUseCase = (restaurant: Restaurant) => Promise<void>;
+type UseCreateNewRestaurant = (restaurant: Restaurant) => Promise<void>;
 
-const setNewRestaurantUseCase = (): SetNewRestaurantUseCase => {
+const useCreateNewRestaurant = (): UseCreateNewRestaurant => {
   const queryClient = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationFn: (restaurant: Restaurant) =>
@@ -26,4 +26,4 @@ const setNewRestaurantUseCase = (): SetNewRestaurantUseCase => {
   return handleSetNewRestaurant;
 };
 
-export default setNewRestaurantUseCase;
+export default useCreateNewRestaurant;

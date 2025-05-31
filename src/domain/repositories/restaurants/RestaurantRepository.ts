@@ -1,9 +1,9 @@
-import type { Restaurant } from "../../domain/restaurant";
+import Restaurant from "../../entities/restaurants/Restaurant";
 
-interface ResturantsRepository {
+interface RestaurantsRepository {
   getAllRestaurants: () => Promise<Restaurant[]>;
   getRestaurantsByName: (name: string) => Promise<Restaurant[]>;
   setNewRestaurant: (restaurant: Restaurant) => Promise<void>;
 }
 
-export default ResturantsRepository;
+export default RestaurantsRepository;

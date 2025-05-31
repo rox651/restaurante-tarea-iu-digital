@@ -6,7 +6,7 @@ import type { RestaurantSearchFilter } from "../domain/restaurant";
 import Restaurants from "../views/restaurants/Restaurants";
 import SearchRestaurant from "../views/restaurants/SearchRestaurant";
 
-import getResturantsByNameUseCase from "../use-cases/restaurants/getRestaurantsByNameUseCase";
+import getResturantsByNameUseCase from "../use-cases/restaurants/useGetRestaurantsByName";
 
 export const Route = createFileRoute("/busqueda")({
   component: RouteComponent,

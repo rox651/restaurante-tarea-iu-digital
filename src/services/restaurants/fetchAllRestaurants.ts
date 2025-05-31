@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore/lite";
-import { db } from "../../domain/firebase/config";
-import type { Restaurant } from "../../domain/restaurant";
+import { db } from "../../domain/config/firebase";
+import type Restaurant from "../../domain/entities/restaurants/Restaurant";
 
 const fetchAllRestaurants = async (): Promise<Restaurant[]> => {
   const restaurantsCol = collection(db, "restaurants");

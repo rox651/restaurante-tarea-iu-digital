@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import Restaurants from "../views/restaurants/Restaurants";
 
-import getAllResturantsUseCase from "../use-cases/restaurants/getAllRestaurantsUseCase";
+import getAllResturantsUseCase from "../use-cases/restaurants/useGetAllRestaurants";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,

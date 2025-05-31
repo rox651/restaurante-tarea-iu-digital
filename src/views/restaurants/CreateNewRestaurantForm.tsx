@@ -1,7 +1,7 @@
 import { useRouter } from "@tanstack/react-router";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Restaurant } from "../../domain/restaurant";
 import { Input, InputError } from "../../components/common/input";
+import type Restaurant from "../../domain/entities/restaurants/Restaurant";
 
 type Props = {
   handleSetNewRestaurant: (restaurant: Restaurant) => Promise<void>;

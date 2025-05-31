@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { RestaurantSearchFilter } from "../../domain/restaurant";
 import { useDebounce } from "../../use-cases/common/useDebounce";
 import { Input } from "../../components/common/input";
+import type RestaurantSearchFilter from "../../domain/entities/restaurants/RestaurantSearchFilter";
 
 type Props = {
   onChange: (filter: RestaurantSearchFilter) => void;

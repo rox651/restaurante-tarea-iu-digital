@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import RestaurantAdapter from "../../adapters/restaurants";
-import type { Restaurant } from "../../domain/restaurant";
+import RestaurantAdapter from "../../infrastructure/adapters/restaurants/RestaurantAdapter";
+import type Restaurant from "../../domain/entities/restaurants/Restaurant";
 
 const restaurantAdapter = new RestaurantAdapter();
 

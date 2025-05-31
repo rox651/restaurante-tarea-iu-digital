@@ -1,15 +1,15 @@
-import RestaurantAdapter from "../../adapters/restaurants";
-import type { Restaurant } from "../../domain/restaurant";
 import { useQuery } from "@tanstack/react-query";
+import RestaurantAdapter from "../../infrastructure/adapters/restaurants/RestaurantAdapter";
+import type Restaurant from "../../domain/entities/restaurants/Restaurant";
 
 const restaurantAdapter = new RestaurantAdapter();
 
-type GetAllRestaurantsUseCase = {
+type UseGetAllRestaurants = {
   restaurants: Restaurant[] | undefined;
   isLoadingRestaurants: boolean;
 };
 
-const getAllResturantsUseCase = (): GetAllRestaurantsUseCase => {
+const UseGetAllResturants = (): UseGetAllRestaurants => {
   const { data, isLoading } = useQuery({
     queryKey: ["restaurants"],
     queryFn: async () => {
@@ -23,4 +23,4 @@ const getAllResturantsUseCase = (): GetAllRestaurantsUseCase => {
   };
 };
 
-export default getAllResturantsUseCase;
+export default UseGetAllResturants;

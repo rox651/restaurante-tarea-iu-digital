@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import CreateNewRestaurantForm from "../views/restaurants/CreateNewRestaurantForm";
 
-import setNewRestaurantUseCase from "../use-cases/restaurants/setNewRestaurantUseCase";
+import setNewRestaurantUseCase from "../use-cases/restaurants/useCreateNewRestaurant";
 
 export const Route = createFileRoute("/nuevo")({
   component: RouteComponent,
