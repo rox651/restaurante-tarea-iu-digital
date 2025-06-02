@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-import type { RestaurantSearchFilter } from "../domain/restaurant";
-
 import Restaurants from "../views/restaurants/Restaurants";
 import SearchRestaurant from "../views/restaurants/SearchRestaurant";
 
-import getResturantsByNameUseCase from "../use-cases/restaurants/getRestaurantsByNameUseCase";
+import useGetResturantsByName from "../hooks/restaurants/useGetRestaurantsByName";
+
+import type RestaurantSearchFilter from "../domain/entities/restaurants/RestaurantSearchFilter";
 
 export const Route = createFileRoute("/busqueda")({
   component: RouteComponent,
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/busqueda")({
 function RouteComponent() {
   const [name, setName] = useState<RestaurantSearchFilter["name"]>("");
 
-  const restaurantsByName = getResturantsByNameUseCase(name);
+  const { restaurants, isLoadingRestaurants } = useGetResturantsByName(name);
 
   return (
     <>
@@ -24,7 +24,14 @@ function RouteComponent() {
           setName(filter.name);
         }}
       />
-      <Restaurants restaurants={restaurantsByName} />
+
+      {isLoadingRestaurants ? (
+        <p className="text-center text-2xl">Cargando...</p>
+      ) : null}
+
+      {!isLoadingRestaurants && restaurants ? (
+        <Restaurants restaurants={restaurants} />
+      ) : null}
     </>
   );
 }

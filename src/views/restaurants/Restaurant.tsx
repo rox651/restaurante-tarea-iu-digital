@@ -1,4 +1,4 @@
-import type { Restaurant as RestaurantType } from "../../domain/restaurant";
+import type RestaurantType from "../../domain/entities/restaurants/Restaurant";
 
 const defaultImage = new URL(
   "../../assets/images/default-image.png",
